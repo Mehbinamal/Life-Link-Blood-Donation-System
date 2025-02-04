@@ -9,6 +9,13 @@ function Signup(){
         name:'',
         email:'',
         password:'',
+        mobileNo:'',
+        gender:'',
+        bloodGroup:'',
+        lastDonationDate:'',
+        address:'',
+        city:'',
+        pincode:''
     })
 
     const handlechange = (e) => {
@@ -22,8 +29,8 @@ function Signup(){
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        const {name,email,password} = SignupInfo;
-        if(!name || !email || !password){
+        const {name,email,password,mobileNo,bloodGroup,gender,address,city,pincode} = SignupInfo;
+        if(!name || !email || !password || !mobileNo || !bloodGroup || !gender || !address || !city || !pincode){
             return handleError('All Fields Required');
         }
         try {
@@ -86,6 +93,76 @@ function Signup(){
                         name="password"
                         placeholder="Enter Your password"
                         value={SignupInfo.password}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="mobileNo">Mobile Number</label>
+                    <input
+                        onChange={handlechange}
+                        type="mobileNo"
+                        name="mobileNo"
+                        placeholder="Enter Your Mobile Number"
+                        value={SignupInfo.mobileNo}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="bloodGroup">Blood Group</label>
+                    <input
+                        onChange={handlechange}
+                        type="bloodGroup"
+                        name="bloodGroup"
+                        placeholder="Enter Your Blood Group"
+                        value={SignupInfo.bloodGroup}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="gender">Gender</label>
+                    <input
+                        onChange={handlechange}
+                        type="gender"
+                        name="gender"
+                        placeholder="Enter Your Gender"
+                        value={SignupInfo.gender}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="lastDonationDate">last Donation Date</label>
+                    <input
+                        onChange={handlechange}
+                        type="lastDonationDate"
+                        name="lastDonationDate"
+                        placeholder="Enter Your Last Donation Date (if any)"
+                        value={SignupInfo.lastDonationDate}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="address">Address</label>
+                    <input
+                        onChange={handlechange}
+                        type="address"
+                        name="address"
+                        placeholder="Enter Your address"
+                        value={SignupInfo.address}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="city">City</label>
+                    <input
+                        onChange={handlechange}
+                        type="city"
+                        name="city"
+                        placeholder="Enter Your city"
+                        value={SignupInfo.city}
+                    />
+                </div>
+                <div>
+                    <label htmlFor="Pincode">Pincode</label>
+                    <input
+                        onChange={handlechange}
+                        type="pincode"
+                        name="pincode"
+                        placeholder="Enter Your pincode"
+                        value={SignupInfo.pincode}
                     />
                 </div>
                 <button type="submit">Signup</button>

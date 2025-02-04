@@ -9,7 +9,7 @@ const signupValidation = (req, res, next) => {
         mobileNo: Joi.string().length(10).pattern(/^[0-9]+$/).required(),
         gender: Joi.string().valid('Male', 'Female').required(),
         bloodGroup: Joi.string().valid('A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-').required(),
-        lastDonationDate: Joi.date().optional(),
+        lastDonationDate: Joi.date().allow(null, '').optional(),
         address: Joi.string().min(5).max(200).required(),
         city: Joi.string().min(2).max(100).required(),
         pincode: Joi.string().length(6).pattern(/^[0-9]+$/).required()
