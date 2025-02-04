@@ -16,7 +16,7 @@ function Home(){
     },[])
     return(
         <div> 
-            <h1>{loggedInUser}</h1> 
+            <h1>Welcome {loggedInUser}</h1> 
             <button onClick={handleLogout}>Logout</button>
         </div>
     )
