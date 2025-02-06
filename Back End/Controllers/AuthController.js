@@ -1,6 +1,8 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const UserModel = require('../Models/User')
+const sendEmail = require('../Utils/email')
+
 
 const signup = async (req, res) => {
     try {
@@ -64,7 +66,50 @@ const login = async (req, res) => {
             })
     }
 }
+
+const forgotPassword = async (req, res, next) => {
+    try {
+        const { email } = req.body;
+        const user = await UserModel.findOne({ email });
+        if (!user) {
+            return res.status(403).json({
+                message: "No user registered with this email",
+                success: false,
+            });
+        }
+
+        const resetToken = user.createResetPasswordToken();
+        await user.save({ validateBeforeSave: false });
+
+        const resetUrl = `${req.protocol}://${req.get("host")}/auth/resetPassword/${resetToken}`;
+        const message = `Your Password Reset Link is: ${resetUrl} \n If you did not request this email, please ignore it.`;
+
+        await sendEmail({
+            email: user.email, 
+            subject: "Password Reset Link",
+            message: message,
+        });
+
+        res.status(201).json({
+            message: "Email Sent",
+            success: true,
+        });
+    } catch (err) {
+        if (err.message.includes("sending mail")) {
+            user.passwordResetToken = undefined;
+            user.passwordResetExpires = undefined;
+            await user.save({ validateBeforeSave: false });
+        }
+
+        res.status(500).json({
+            message: "Internal server error",
+            success: false,
+        });
+    }
+};
+
 module.exports = {
     signup,
-    login
+    login,
+    forgotPassword
 }

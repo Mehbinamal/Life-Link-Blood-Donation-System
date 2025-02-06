@@ -14,7 +14,7 @@ app.get('/ping', (req,res) => {
 
 const corsOptions = {
     origin: "http://localhost:3000", 
-    methods: "GET,POST,PUT,DELETE",
+    methods: "GET,POST,PUT,DELETE,PATCH",
     credentials: true, 
 };
 
