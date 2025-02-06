@@ -59,7 +59,7 @@ const login = async (req, res) => {
                 name: user.name
             })
     } catch (err) {
-        res.status(500)
+        res.status(501)
             .json({
                 message: "Internal server errror",
                 success: false
@@ -67,7 +67,7 @@ const login = async (req, res) => {
     }
 }
 
-const forgotPassword = async (req, res, next) => {
+const forgotPassword = async (req, res) => {
     try {
         const { email } = req.body;
         const user = await UserModel.findOne({ email });
@@ -82,7 +82,7 @@ const forgotPassword = async (req, res, next) => {
         await user.save({ validateBeforeSave: false });
 
         const resetUrl = `${req.protocol}://${req.get("host")}/auth/resetPassword/${resetToken}`;
-        const message = `Your Password Reset Link is: ${resetUrl} \n If you did not request this email, please ignore it.`;
+        const message = `Your Password Reset Link is: ${resetUrl} \n\n If you did not request this email, please ignore it.`;
 
         await sendEmail({
             email: user.email, 
@@ -101,15 +101,39 @@ const forgotPassword = async (req, res, next) => {
             await user.save({ validateBeforeSave: false });
         }
 
-        res.status(500).json({
+        res.status(505).json({
             message: "Internal server error",
             success: false,
         });
     }
 };
 
+const resetPassword = async (req,res) => {
+    try {
+        
+        const user = req.user;
+        const { newPassword} = req.body
+        
+        user.password = await bcrypt.hash(newPassword, 10);
+        user.passwordResetToken = undefined;
+        user.passwordResetExpires = undefined;
+        
+        await user.save({ validateBeforeSave: false });
+        
+        res.status(200).json({ 
+            message: "Password reset successful",
+            success: true,
+         });
+    } catch (error) {
+        res.status(508).json({ 
+            message: "Internal server error", 
+            error: err.message });
+    }
+}
+
 module.exports = {
     signup,
     login,
-    forgotPassword
+    forgotPassword,
+    resetPassword
 }
