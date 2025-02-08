@@ -22,7 +22,7 @@ body{
   align-items: center;
 }
 
-.container{
+.loginPage{
   background-color: #fff;
   padding: 32px 42px;
   border-radius: 10px;
@@ -31,21 +31,21 @@ body{
 
 }
 
-.container > h1 {
+.loginPage > h1 {
   margin-bottom: 20px;
 }
 
-.container > form{
+.loginPage > form{
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-.container div{
+.loginPage div{
   display: flex;
   flex-direction: column;
 }
 
-.container input{
+.loginPage input{
   width: 100%;
   font-size: 20px;
   padding: 10px;
@@ -54,7 +54,7 @@ body{
   border-bottom: 1px solid black;
 }
 
-.container input::placeholder{
+.loginPage input::placeholder{
   font-size: 12px;
   font-style: italic;
 }
