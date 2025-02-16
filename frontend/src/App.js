@@ -4,6 +4,7 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import WelcomePage from './pages/WelcomePage';
 import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
 import './App.css';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path = '/home' element = {<Home/>}/>
         <Route path = '/welcome' element = {<WelcomePage/>}/>
         <Route path = '/forgotPassword' element = {<ForgotPassword/>}/>
+        <Route path = '/resetPassword/:token' element={<ResetPassword />} />
       </Routes>
     </div>
   );
