@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const AuthRouter = require('./Routes/AuthRouter')
+const RecipientRouter = require('./Routes/RecipientRouter');
 
 require('dotenv').config();
 require('./Models/db');
@@ -21,6 +22,7 @@ const corsOptions = {
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
 app.use('/auth',AuthRouter);
+app.use('/recipient',RecipientRouter);
 
 app.listen(PORT, ()=>{
     console.log(`Server is running on port ${PORT}`);
