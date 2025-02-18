@@ -43,7 +43,7 @@ const bloodRequestValidation = (req,res,next) => {
             'any.required': 'Bystander name is required',
         }),
         contactNumber: Joi.string()
-            .pattern(/^[0-9]{10}$/) // Assuming a 10-digit phone number
+            .pattern(/^[0-9]{10}$/) 
             .required()
             .messages({
                 'string.pattern.base': 'Contact number must be a 10-digit number',
@@ -51,7 +51,7 @@ const bloodRequestValidation = (req,res,next) => {
                 'any.required': 'Contact number is required',
             }),
         byStanderEmail: Joi.string()
-            .email({ tlds: { allow: false } }) // Validate email format
+            .email({ tlds: { allow: false } }) 
             .optional()
             .messages({
                 'string.email': 'Invalid email format',

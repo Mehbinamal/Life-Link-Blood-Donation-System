@@ -62,7 +62,7 @@ const resetTokenValidation = async (req,res,next) => {
             passwordResetExpires: { $gt: Date.now() } 
         })
         if (!user) {
-            return res.status(400).json({ message: "Invalid or expired token", success: false });
+            return res.status(600).json({ message: "Invalid or expired token", success: false });
         }
        
         req.user = user;

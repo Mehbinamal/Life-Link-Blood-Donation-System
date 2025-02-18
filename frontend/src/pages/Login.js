@@ -82,6 +82,9 @@ function Login(){
                 <span>Don't have an Account ? 
                     <Link to = "/signup"> Signup </Link>
                 </span>
+                <span>Forgot Password? 
+                    <Link to = "/forgotPassword"> Forgot Password </Link>
+                </span>
             </form>
             <ToastContainer/>
         </div>

@@ -81,7 +81,7 @@ const forgotPassword = async (req, res) => {
         const resetToken = user.createResetPasswordToken();
         await user.save({ validateBeforeSave: false });
 
-        const resetUrl = `${req.protocol}://${req.get("host")}/auth/resetPassword/${resetToken}`;
+        const resetUrl = `${req.protocol}://${req.get("host")}/resetPassword/${resetToken}`;
         const message = `Your Password Reset Link is: ${resetUrl} \n\n If you did not request this email, please ignore it.`;
 
         await sendEmail({

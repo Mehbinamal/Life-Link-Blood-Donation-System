@@ -2,30 +2,40 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { handleError, handleSuccess } from "../utils";
+import { ToastContainer } from "react-toastify";
 
 const ResetPassword = () => {
     const { token } = useParams();  
     const navigate = useNavigate();
 
-    const [newpassword, setNewPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (password !== confirmPassword) {
+        if (newPassword !== confirmPassword) {
             handleError("Passwords do not match!");
             return;
         }
 
         try {
-            const response = await axios.post("http://localhost:8080/auth/resetPassword/:token", {
-                newpassword,
+            console.log('await');
+            const response = await axios.post(`http://localhost:8080/auth/resetPassword/${token}`, {
+                newPassword,
                 confirmPassword
             });
-
-            handleSuccess(response.data.message);
+            console.log('response');
+            console.log('success');
+            if(response.data.success){
+                console.log('success');
+                handleSuccess(response.data.message);
+            }else{
+                console.log('fail');
+                handleError(response.data.message);
+            }
+            
 
             setTimeout(() => {
                 navigate("/login"); 
@@ -44,7 +54,7 @@ const ResetPassword = () => {
                 <label>New Password:</label>
                 <input
                     type="password"
-                    value={password}
+                    value={newPassword}
                     onChange={(e) => setNewPassword(e.target.value)}
                     required
                 />
@@ -59,6 +69,7 @@ const ResetPassword = () => {
                 <br />
                 <button type="submit">Reset Password</button>
             </form>
+            <ToastContainer/>
         </div>
     );
 };
