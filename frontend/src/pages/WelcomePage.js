@@ -6,7 +6,7 @@ function WelcomePage (){
     return(
         <div>
             <button onClick={() => navigate('/login')}> Donor </button>
-            <button onClick={() => navigate('/recipient')}> Recipient </button>
+            <button onClick={() => navigate('/requestBlood')}> Recipient </button>
         </div>
     )
 }

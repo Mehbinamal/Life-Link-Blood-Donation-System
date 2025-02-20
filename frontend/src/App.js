@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import WelcomePage from './pages/WelcomePage';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import RequestForm from './pages/Recipient/RequestForm';
 import './App.css';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path = '/welcome' element = {<WelcomePage/>}/>
         <Route path = '/forgotPassword' element = {<ForgotPassword/>}/>
         <Route path = '/resetPassword/:token' element={<ResetPassword />} />
+        <Route path = '/requestBlood' element={<RequestForm />} />
       </Routes>
     </div>
   );
