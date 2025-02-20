@@ -1,6 +1,6 @@
 import React from "react";
 
-function WelcomePage (){
+function RequestForm (){
     
     return(
         <div>
@@ -9,4 +9,4 @@ function WelcomePage (){
     )
 }
 
-export default WelcomePage;  
+export default RequestForm;  
