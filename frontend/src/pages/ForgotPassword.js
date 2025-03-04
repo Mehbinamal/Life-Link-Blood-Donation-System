@@ -2,74 +2,70 @@ import React, { useState } from "react";
 import { handleError, handleSuccess } from "../utils";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import './Styles/ForgotPassword.css';
 
 function ForgotPassword (){
 
-    const [ emailInfo,SetEmailInfo] = useState({
-        email :''
-    })
+    const [emailInfo, setEmailInfo] = useState({ email: '' });
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    const handlechange = (e) =>{
-        const { name,value } = e.target;
-        const copyEmailInfo = { ...emailInfo};
-        copyEmailInfo[name] = value;
-        SetEmailInfo(copyEmailInfo);
-    }
+    const handleChange = (e) => {
+        setEmailInfo({ ...emailInfo, [e.target.name]: e.target.value });
+    };
 
-    const handleForgotPassword = async (e) =>{
+    const handleForgotPassword = async (e) => {
         e.preventDefault();
-
-        const { email } = emailInfo;
-        if(!email){
-            return handleError('email Required');
+        if (!emailInfo.email) {
+            return handleError('Email Required');
         }
+
+        setLoading(true); // Start loading animation
 
         try {
             const url = 'https://life-link-blood-donation-system-server-indol.vercel.app/auth/ForgotPassword';
             const response = await fetch(url, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    },
-                body : JSON.stringify(emailInfo)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(emailInfo),
             });
+
             const result = await response.json();
-            const { success,message,error} = result;
-            if (success){
-                handleSuccess(message);
-                setTimeout(() =>{
-                    navigate('/welcome')
-                },1000)
-            }else if (error){
-                const details = error?.details[0].message;
-                handleError(details);
-            }else if (!success) {
-                handleError(message);
+            if (result.success) {
+                handleSuccess(result.message);
+                setTimeout(() => navigate('/welcome'), 1000);
+            } else {
+                handleError(result.error?.details[0]?.message || result.message);
             }
         } catch (error) {
-            handleError();
+            handleError('Something went wrong!');
+        } finally {
+            setLoading(false); // Stop loading animation
         }
-    }
-    return(
-        <div className="Forgot Password">
-            <h1>Forgot Password</h1>
-            <form onSubmit={handleForgotPassword}>
-                <div>
-                <label htmlFor="email">Email</label>
+    };
+
+    return (
+        <div className="password-container">
+            <div className="password-box">
+                <h1>Forgot Password</h1>
+                <form onSubmit={handleForgotPassword}>
+                    <label htmlFor="email">Email</label>
                     <input
-                        onChange={handlechange}
+                        onChange={handleChange}
                         type="email"
                         name="email"
                         placeholder="Enter Your Email"
                         value={emailInfo.email}
+                        required
                     />
-                </div>
-                <button type="submit">Reset Password</button>
-            </form>
-            <ToastContainer/>
+                    <button type="submit" className={`password-button ${loading ? "loading" : ""}`} disabled={loading}>
+                        {loading ? <div className="loading"></div> : "Reset Password"}
+                    </button>
+                </form>
+            </div>
+            <ToastContainer />
         </div>
-    )
+    );
 }
 
-export default ForgotPassword; 
+export default ForgotPassword;
