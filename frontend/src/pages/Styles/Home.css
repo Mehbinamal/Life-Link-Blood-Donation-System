@@ -1,0 +1,77 @@
+/* Donor Home Page Styles */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffcccc, #ff9999);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+
+.menu {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 400px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.menu h2 {
+    color: #ff4e50;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.blood-requests {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 80%;
+    max-width: 600px;
+    margin-top: 20px;
+}
+
+.blood-requests h2 {
+    color: #ff4e50;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.blood-requests ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.blood-requests li {
+    background: white;
+    color: black;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: #ff4e50;
+    border: none;
+    color: white;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.logout-button:hover {
+    background: #d43f42;
+    transform: scale(1.05);
+}
