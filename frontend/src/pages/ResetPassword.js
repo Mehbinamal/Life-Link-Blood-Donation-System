@@ -22,7 +22,7 @@ const ResetPassword = () => {
 
         try {
             console.log('await');
-            const response = await axios.post(`http://localhost:8080/auth/resetPassword/${token}`, {
+            const response = await axios.post(`https://life-link-blood-donation-system-server-indol.vercel.app/auth/resetPassword/${token}`, {
                 newPassword,
                 confirmPassword
             });

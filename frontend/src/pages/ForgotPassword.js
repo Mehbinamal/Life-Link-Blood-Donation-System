@@ -26,7 +26,7 @@ function ForgotPassword (){
         }
 
         try {
-            const url = 'http://localhost:8080/auth/ForgotPassword';
+            const url = 'https://life-link-blood-donation-system-server-indol.vercel.app/auth/ForgotPassword';
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {

@@ -26,7 +26,7 @@ function Login(){
             return handleError('All Fields Required');
         }
         try {
-            const url = 'http://localhost:8080/auth/Login';
+            const url = 'https://life-link-blood-donation-system-server-indol.vercel.app/auth/Login';
             const response = await fetch(url, {
                 method: 'POST',
                 headers: {
