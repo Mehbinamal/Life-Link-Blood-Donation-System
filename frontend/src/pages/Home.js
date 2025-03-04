@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./Styles/Home.css"; 
 
 function Home() {
     const [loggedInUser, setLoggedInUser] = useState('');
@@ -9,7 +10,6 @@ function Home() {
     useEffect(() => {
         setLoggedInUser(localStorage.getItem('loggedInUser'));
 
-        // Fetch blood requests
         const fetchBloodRequests = async () => {
             try {
                 const response = await fetch("https://life-link-blood-donation-system-server-indol.vercel.app/donor/bloodRequests");
@@ -37,25 +37,35 @@ function Home() {
     };
 
     return (
-        <div>
-            <h1>Welcome {loggedInUser}</h1>
-            <button onClick={handleLogout}>Logout</button>
+        <div className="home-container">
+            <h1>Welcome, {loggedInUser}</h1>
 
-            <h2>Blood Requests</h2>
-            {bloodRequests.length > 0 ? (
-                <ul>
-                    {bloodRequests.map((request, index) => (
-                        <li key={index}>
-                            <strong>Blood Group:</strong> {request.bloodGroup} <br />
-                            <strong>Patient Name:</strong> {request.patientName} <br />
-                            <strong>Hospital:</strong> {request.hospitalName} <br />
-                            <strong>City:</strong> {request.city}
-                        </li>
-                    ))}
-                </ul>
-            ) : (
-                <p>No blood requests available.</p>
-            )}
+            {/* Dummy Menu Section */}
+            <div className="menu">
+                <h2>Menu</h2>
+                <p>Coming Soon...</p>
+            </div>
+
+            {/* Blood Requests Section */}
+            <div className="blood-requests">
+                <h2>Blood Requests</h2>
+                {bloodRequests.length > 0 ? (
+                    <ul>
+                        {bloodRequests.map((request, index) => (
+                            <li key={index}>
+                                <strong>Blood Group:</strong> {request.bloodGroup} <br />
+                                <strong>Patient Name:</strong> {request.patientName} <br />
+                                <strong>Hospital:</strong> {request.hospitalName} <br />
+                                <strong>City:</strong> {request.city}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <p>No blood requests available.</p>
+                )}
+            </div>
+
+            <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>
     );
 }
