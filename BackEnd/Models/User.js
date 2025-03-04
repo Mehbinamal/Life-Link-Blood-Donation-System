@@ -24,6 +24,10 @@ const UserSchema = new Schema({
         enum: ['Male','Female'],
         required:true
     },
+    available: {
+        type: Boolean,
+        default: false, 
+    },
     bloodGroup:{
         type:String,
         enum: ['A+','A-','B+','B-','AB+','AB-','O+','O-'],
