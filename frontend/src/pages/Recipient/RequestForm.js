@@ -11,7 +11,6 @@ function RequestForm() {
         contactNumber: "", byStanderEmail: "", location: "", status: "Pending"
     });
 
-    const [message, setMessage] = useState("");
 
     const [loading, setLoading] = useState(false);
 
@@ -22,12 +21,11 @@ function RequestForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setLoading(true);
-
+    
         try {
             const response = await axios.post("https://life-link-blood-donation-system-server-indol.vercel.app/recipient/requestBlood", formData);
-            setMessage(response.data.message);
-            if (message) {
-                handleSuccess(message);
+            if (response.data.success) {  
+                handleSuccess(response.data.message);
                 setFormData({
                     patientName: "", patientAge: "", hospitalName: "",
                     bloodGroup: "", unitsRequired: "", urgencyLevel: "",
@@ -36,7 +34,7 @@ function RequestForm() {
                 });
             }
         } catch (err) {
-            handleError(message);
+            handleError(err.response?.data?.message || "An error occurred");  
         } finally {
             setLoading(false);
         }

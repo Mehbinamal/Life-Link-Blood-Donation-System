@@ -7,7 +7,7 @@ const bloodRequest = async (req,res) =>{
         patientName,patientAge,hospitalName,bloodGroup,unitsRequired,urgencyLevel,byStanderName,contactNumber,byStanderEmail,location,createdAt,status
         });
         await bloodRequestModel.save();
-        res.status(701)
+        res.status(200)
             .json({
                 message: "Blood Request Created Successfully",
                 success: true
