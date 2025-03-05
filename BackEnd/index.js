@@ -15,13 +15,13 @@ app.get('/ping', (req,res) => {
 })
 
 const corsOptions = {
-    origin: "http://localhost:3000", 
+    origin:["http://localhost:3000", "https://life-link-blood-donation-system.vercel.app"], 
     methods: "GET,POST,PUT,DELETE,PATCH",
     credentials: true, 
 };
 
-app.use(bodyParser.json());
 app.use(cors(corsOptions));
+app.use(bodyParser.json());
 app.use('/auth',AuthRouter);
 app.use('/recipient',RecipientRouter);
 app.use('/donor',donorRouter);
