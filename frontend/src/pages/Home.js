@@ -36,6 +36,10 @@ function Home() {
         }, 1000);
     };
 
+    const handleRequestClick = (request) => {
+        navigate(`/home/requestPage/${request._id}`, { state: { request } });
+    };
+
     return (
         <div className="home-container">
             <h1>Welcome, {loggedInUser}</h1>
@@ -48,22 +52,37 @@ function Home() {
 
             {/* Blood Requests Section */}
             <div className="blood-requests">
-                <h2>Blood Requests</h2>
-                {bloodRequests.length > 0 ? (
-                    <ul>
-                        {bloodRequests.map((request, index) => (
-                            <li key={index}>
+            <h2>Blood Requests</h2>
+            {bloodRequests.length > 0 ? (
+                <ul>
+                    {bloodRequests.map((request, index) => (
+                        <li key={index}>
+                            <button className="blood-request-button"
+                                onClick={() => handleRequestClick(request)}
+                                style={{
+                                    width: "100%",
+                                    textAlign: "left",
+                                    padding: "10px",
+                                    border: "1px solid #ddd",
+                                    borderRadius: "5px",
+                                    background: "#f8f9fa",
+                                    cursor: "pointer",
+                                    marginBottom: "10px",
+                                    display: "block"
+                                }}
+                            >
                                 <strong>Blood Group:</strong> {request.bloodGroup} <br />
                                 <strong>Patient Name:</strong> {request.patientName} <br />
                                 <strong>Hospital:</strong> {request.hospitalName} <br />
-                                <strong>City:</strong> {request.city}
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No blood requests available.</p>
-                )}
-            </div>
+                                <strong>City:</strong> {request.location}
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <p>No blood requests available.</p>
+            )}
+        </div>
 
             <button className="logout-button" onClick={handleLogout}>Logout</button>
         </div>

@@ -6,6 +6,7 @@ import WelcomePage from './pages/WelcomePage';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import RequestForm from './pages/Recipient/RequestForm';
+import DetailedRequest from './pages/Donor/DetailedRequest';
 import './App.css';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route path = '/forgotPassword' element = {<ForgotPassword/>}/>
         <Route path = '/resetPassword/:token' element={<ResetPassword />} />
         <Route path = '/requestBlood' element={<RequestForm />} />
+        <Route path = '/home/requestPage/:id' element= { <DetailedRequest/>}/>
       </Routes>
     </div>
   );
