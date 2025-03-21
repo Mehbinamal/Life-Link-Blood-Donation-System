@@ -43,13 +43,6 @@ function Home() {
     return (
         <div className="home-container">
             <h1>Welcome, {loggedInUser}</h1>
-
-            {/* Dummy Menu Section */}
-            <div className="menu">
-                <h2>Menu</h2>
-                <p>Coming Soon...</p>
-            </div>
-
             {/* Blood Requests Section */}
             <div className="blood-requests">
             <h2>Blood Requests</h2>
@@ -58,19 +51,7 @@ function Home() {
                     {bloodRequests.map((request, index) => (
                         <li key={index}>
                             <button className="blood-request-button"
-                                onClick={() => handleRequestClick(request)}
-                                style={{
-                                    width: "100%",
-                                    textAlign: "left",
-                                    padding: "10px",
-                                    border: "1px solid #ddd",
-                                    borderRadius: "5px",
-                                    background: "#f8f9fa",
-                                    cursor: "pointer",
-                                    marginBottom: "10px",
-                                    display: "block"
-                                }}
-                            >
+                                onClick={() => handleRequestClick(request)}>
                                 <strong>Blood Group:</strong> {request.bloodGroup} <br />
                                 <strong>Patient Name:</strong> {request.patientName} <br />
                                 <strong>Hospital:</strong> {request.hospitalName} <br />
