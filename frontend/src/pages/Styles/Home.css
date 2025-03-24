@@ -133,3 +133,73 @@
         padding: 8px 16px;
     }
 }
+
+/* Availability Switch */
+.availability-switch {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Switch Container */
+.availability-switch .ant-switch {
+    background: rgba(255, 255, 255, 0.9); /* Matches blood-requests background */
+    border: 1px solid #ffcccc; /* Soft border matching gradient */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow like home.css */
+    border-radius: 20px;
+    height: 36px; /* Adjusted for better proportion with text */
+    width: 120px; /* Wider to accommodate "not available" text */
+    transition: background 0.3s ease; /* Smooth background transition */
+}
+
+/* Switch Checked State */
+.availability-switch .ant-switch-checked {
+    background: linear-gradient(135deg, #ff4e50, #ff9999); /* Matches home-container gradient */
+    border-color: #ff4e50;
+}
+
+/* Switch Handle */
+.availability-switch .ant-switch-handle {
+    width: 28px; /* Slightly larger for better visibility */
+    height: 28px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    transition: transform 0.3s ease;
+    top: 3px; /* Center vertically */
+}
+
+/* Switch Checked Handle */
+.availability-switch .ant-switch-checked .ant-switch-handle {
+    transform: translateX(84px); /* Adjusted for wider switch (120px width - handle width - padding) */
+}
+
+/* Text for Checked/Unchecked */
+.availability-switch .ant-switch-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    color: #ff4e50; /* Theme color */
+    padding: 0 10px; /* Adjusted padding for text */
+    width: 100%; /* Ensure text takes full space */
+}
+
+/* Text for Not Available */
+.availability-switch .ant-switch:not(.ant-switch-checked) .ant-switch-inner {
+    color: #333; /* Darker text for contrast */
+}
+
+/* Text for Available */
+.availability-switch .ant-switch-checked .ant-switch-inner {
+    color: white; /* White text for checked state */
+}
+
+/* Active (click) Effect */
+.availability-switch .ant-switch:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
