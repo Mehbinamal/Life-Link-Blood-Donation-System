@@ -119,18 +119,19 @@ blockquote {
     border: 3px solid #ff4e50;
 }
 
-/* 📧 Email Link Styling */
+/* 📧 Email Links Styling */
 .email-link {
     color: #ff4e50;
-    text-decoration: none;
     font-weight: bold;
-    transition: color 0.3s ease-in-out;
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 .email-link:hover {
-    color: #d43f42;
     text-decoration: underline;
+    color: #d43f42;
 }
+
 
 /* 📱 Responsive Design */
 @media screen and (max-width: 768px) {
