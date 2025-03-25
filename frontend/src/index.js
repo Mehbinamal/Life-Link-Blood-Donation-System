@@ -16,7 +16,8 @@ function AppWithHeader() {
     "/login",
     "/signup",
     "/requestBlood",
-    "/forgotPassword", // Fixed Forget Password page path
+    "/forgotPassword", 
+    // Fixed Forget Password page path
   ];
 
   // Check if current path matches exactly OR starts with a dynamic route
