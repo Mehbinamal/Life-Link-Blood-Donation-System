@@ -39,7 +39,7 @@ function Home() {
         localStorage.removeItem("token");
         localStorage.removeItem("loggedInUser");
         setTimeout(() => {
-            navigate("/login");
+            navigate("/welcome");
         }, 1000);
     };
 
