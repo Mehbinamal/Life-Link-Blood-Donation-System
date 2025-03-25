@@ -57,15 +57,30 @@ function About() {
 
 
 
-      {/* Team Members */}
-      <section className="about-section">
-        <h2>Meet the Creators</h2>
-        <p>Developed with dedication by:</p>
-        <ul>
-          <li><strong>Amal Mehbin</strong></li>
-          <li><strong>Muhannad Mohammed Ali</strong></li>
-        </ul>
-      </section>
+{/* Team Members */}
+<section className="about-section">
+    <h2>Meet the Creators</h2>
+    <p>Developed with dedication by:</p>
+    <ul>
+        <li>
+            <button 
+                className="linkedin-button"
+                onClick={() => window.open("https://www.linkedin.com/in/Amal-Mehabin-P/", "_blank")}
+            >
+                <strong>Amal Mehbin</strong>
+            </button>
+        </li>
+        <li>
+            <button 
+                className="linkedin-button"
+                onClick={() => window.open("https://www.linkedin.com/in/muhannad-mohammed-ali-b1964432a/", "_blank")}
+            >
+                <strong>Muhannad Mohammed Ali</strong>
+            </button>
+        </li>
+    </ul>
+</section>
+
       {/* Contact / Get Involved */}
       <section className="about-section">
         <h2>Get Involved</h2>
