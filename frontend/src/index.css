@@ -1,6 +1,6 @@
 /* 1️⃣ Define Global Variables First */
 :root {
-  --primary-color: #ff4e50; /* Example red shade */
+  --primary-color: #ffc0cb; /* Brand red shade */
   --secondary-color: #ffffff; /* White */
 }
 
@@ -13,12 +13,28 @@
 }
 
 /* 3️⃣ Body & Background */
-body {
-  padding-top: 80px; /* Pushes content below navbar */
-  background-color: #f8f9fa;
+html, body {
+  height: 100%;
+  background-color: var(--primary-color) !important; /* Ensure full background */
   color: #333;
   line-height: 1.6;
 }
+
+/* Ensures content is pushed down below the header */
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.page-content {
+  flex: 1; /* Allows content to stretch fully */
+  width: 100%;
+  background: var(--primary-color); /* Extends the red background */
+  padding-top: 100px; /* Prevents overlap from fixed header */
+}
+
+/* 4️⃣ LifeLink Header */
 
 .lifelink-header {
   text-align: center;
@@ -32,11 +48,10 @@ body {
   top: 0;
   z-index: 999;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
-  margin: 0;  /* Remove extra margin */
+  margin: 0;  
 }
 
-
-/* 4️⃣ Navbar Styles */
+/* 5️⃣ Navbar Styles */
 .navbar {
   background-color: var(--primary-color);
   position: fixed;
@@ -49,10 +64,10 @@ body {
   z-index: 1000;
 }
 
-/* 5️⃣ Button Styles */
+/* 6️⃣ Button Styles */
 .btn {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
+  background-color: var(--secondary-color); /* White background */
+  color: var(--primary-color); /* Red text */
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -63,9 +78,10 @@ body {
 .btn:hover {
   background-color: #d43f42;
   transform: scale(1.05);
+  color: white;
 }
 
-/* 6️⃣ Forms */
+/* 7️⃣ Forms */
 form {
   background: #fff;
   padding: 20px;
@@ -76,7 +92,7 @@ form {
   margin: 20px auto;
 }
 
-/* 7️⃣ Responsive Design */
+/* 8️⃣ Responsive Design */
 @media (max-width: 768px) {
   body {
     font-size: 14px;
