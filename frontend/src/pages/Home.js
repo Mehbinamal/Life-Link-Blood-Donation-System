@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Styles/Home.css"; 
-import { Switch } from "antd";
 
 function Home() {
     const [loggedInUser, setLoggedInUser] = useState('');
     const [bloodRequests, setBloodRequests] = useState([]);
-    const [isAvailable, setIsAvailable] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -34,7 +32,7 @@ function Home() {
         localStorage.removeItem('token');
         localStorage.removeItem('loggedInUser');
         setTimeout(() => {
-            navigate('/login');
+            navigate('/welcome');
         }, 1000);
     };
 
@@ -45,14 +43,7 @@ function Home() {
     return (
         <div className="home-container">
             <h1>Welcome, {loggedInUser}</h1>
-            <div className="availability-switch">
-                <Switch
-                    checked={isAvailable}
-                    onChange={(checked) => setIsAvailable(checked)} // Update state on toggle
-                    checkedChildren="available"
-                    unCheckedChildren="not available"
-                />
-            </div>
+        
             {/* Blood Requests Section */}
             <div className="blood-requests">
             <h2>Blood Requests</h2>
