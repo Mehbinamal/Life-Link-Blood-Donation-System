@@ -18,7 +18,7 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Update Last Donation History',
+    title: 'Update Last Donation Date',
     path: '/updatedonationhistory',
     icon: <IoIcons.IoIosPaper/>,
     cName: 'nav-text'

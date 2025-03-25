@@ -3,6 +3,8 @@ import axios from 'axios';
 import './UpdateLastDonationDate.css';
 import { ToastContainer } from "react-toastify";
 import { handleError, handleSuccess } from "../../utils";
+import { Navigate } from 'react-router-dom';
+import Navbar from '../../components/Navbar'
 
 function UpdateLastDonationDate() {
     const [newDonationDate, setNewDonationDate] = useState('');
@@ -28,6 +30,9 @@ function UpdateLastDonationDate() {
 
             if (response.data.success) {
                 handleSuccess('Last donation date updated successfully!');
+                setTimeout(() => {
+                  Navigate('/home');
+              }, 1000);
             } else {
                 handleError(response.data.message);
             }
@@ -39,6 +44,8 @@ function UpdateLastDonationDate() {
     };
 
     return (
+      <>
+      <Navbar/>
         <div className="update-container">
             <h2 className="title">Update Last Donation Date</h2>
             <form onSubmit={handleSubmit} className="update-form">
@@ -59,6 +66,7 @@ function UpdateLastDonationDate() {
             {errorMessage && <p className="error">{errorMessage}</p>}
             <ToastContainer />
         </div>
+        </>
     );
 }
 

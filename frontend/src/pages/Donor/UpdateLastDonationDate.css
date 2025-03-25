@@ -1,39 +1,61 @@
+/* Update Container */
 .update-container {
-    max-width: 500px;
-    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffcccc, #ff9999);
+    font-family: 'Poppins', sans-serif;
+    color: white;
     padding: 20px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
+/* Title */
 .title {
     font-size: 24px;
-    color: #ff4e50;
     margin-bottom: 20px;
+    color: #ff4e50;
 }
 
+/* Update Form */
 .update-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
+/* Labels */
 label {
     font-size: 16px;
     color: #333;
     text-align: left;
 }
 
+/* Input Fields */
 input {
-    padding: 10px;
+    padding: 12px;
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 5px;
     outline: none;
+    background: #f8f9fa;
+    transition: background 0.3s;
 }
 
+/* Input Focus */
+input:focus {
+    border-color: #ff4e50;
+    background: #fff;
+}
+
+/* Update Button */
 .update-btn {
     background: #ff4e50;
     color: white;
@@ -42,26 +64,45 @@ input {
     font-size: 16px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, transform 0.2s;
 }
 
+/* Hover effect */
 .update-btn:hover {
     background: #d43f42;
+    transform: scale(1.05);
 }
 
+/* Disabled Button */
 .update-btn:disabled {
     background: #ccc;
     cursor: not-allowed;
 }
 
-.success {
-    color: green;
-    margin-top: 15px;
-    font-size: 16px;
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .update-form {
+        width: 95%;
+        padding: 15px;
+    }
+
+    input, .update-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
 }
 
-.error {
-    color: red;
-    margin-top: 15px;
-    font-size: 16px;
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .update-form {
+        padding: 10px;
+    }
+
+    input, .update-btn {
+        font-size: 14px;
+        padding: 8px;
+    }
 }
