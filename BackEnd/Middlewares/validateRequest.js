@@ -25,6 +25,13 @@ const validateRequest = async (req, res, next) => {
             }
         }
 
+        if (user.bloodGroup !== request.bloodGroup) {
+            return res.status(400).json({
+                success: false,
+                message: `You can only donate to your own blood group. If you know someone of this group, please refer this request to them.`,
+            });
+        }
+        
         // Check if the request is already completed
         if (request.status === 'Completed') {
             return res.status(400).json({ success: false, message: 'Request has already been completed.' });
