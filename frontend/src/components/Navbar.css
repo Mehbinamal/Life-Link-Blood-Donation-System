@@ -43,6 +43,7 @@
   left: -100%;
   transition: 850ms;
   opacity: 0; /* For fade effect */
+  z-index: 999;
 }
 
 .nav-menu.active {
@@ -81,6 +82,13 @@
       opacity: 1;
       transform: translateX(0);
   }
+}
+
+.website-name {
+  color: white; /* Text color */
+  font-size: 24px; /* Adjust size as needed */
+  font-weight: bold;
+  margin-left: 20px; /* Space between menu and name */
 }
 
 .nav-text a {
