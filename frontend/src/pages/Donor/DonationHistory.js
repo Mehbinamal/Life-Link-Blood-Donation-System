@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from '../../components/Navbar'; 
 import './DonationHistory.css';
-
 
 function DonationHistory() {
     const [donationHistory, setDonationHistory] = useState([]);
@@ -39,52 +39,55 @@ function DonationHistory() {
     }, [loggedInUser]);
 
     return (
-        <div className="container">
-            <h2 className="title">Donation History</h2>
+        <>
+            <Navbar /> {/* ✅ Added Navbar here */}
+            <div className="container">
+                <h2 className="title">Donation History</h2>
 
-            {loading ? (
-                <p className="loading">Loading donation history...</p>
-            ) : error ? (
-                <p className="error">{error}</p>
-            ) : donationHistory.length === 0 ? (
-                <p className="no-history">No donation history found.</p>
-            ) : (
-                <div className="history-list">
-                    {donationHistory.map((history, index) => (
-                        <div key={history._id} className="history-item">
-                            <h3>
-                                Request ID: <span>{history.requestId?._id || 'N/A'}</span>
-                            </h3>
-                            <p>
-                                <strong>Blood Group:</strong> {history.requestId?.bloodGroup || 'N/A'}
-                            </p>
-                            <p>
-                                <strong>Recipient Name:</strong> {history.requestId?.patientName || 'N/A'}
-                            </p>
-                            <p>
-                                <strong>Hospital Name:</strong> {history.requestId?.hospitalName || 'N/A'}
-                            </p>
-                            <p>
-                                <strong>Status:</strong>{' '}
-                                <span
-                                    className={
-                                        history.requestId?.status === 'Completed'
-                                            ? 'status-completed'
-                                            : 'status-pending'
-                                    }
-                                >
-                                    {history.requestId?.status || 'N/A'}
-                                </span>
-                            </p>
-                            <p>
-                                <strong>Donation Date:</strong>{' '}
-                                {new Date(history.donationDate).toLocaleDateString()}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
+                {loading ? (
+                    <p className="loading">Loading donation history...</p>
+                ) : error ? (
+                    <p className="error">{error}</p>
+                ) : donationHistory.length === 0 ? (
+                    <p className="no-history">No donation history found.</p>
+                ) : (
+                    <div className="history-list">
+                        {donationHistory.map((history) => (
+                            <div key={history._id} className="history-item">
+                                <h3>
+                                    Request ID: <span>{history.requestId?._id || 'N/A'}</span>
+                                </h3>
+                                <p>
+                                    <strong>Blood Group:</strong> {history.requestId?.bloodGroup || 'N/A'}
+                                </p>
+                                <p>
+                                    <strong>Recipient Name:</strong> {history.requestId?.patientName || 'N/A'}
+                                </p>
+                                <p>
+                                    <strong>Hospital Name:</strong> {history.requestId?.hospitalName || 'N/A'}
+                                </p>
+                                <p>
+                                    <strong>Status:</strong>{' '}
+                                    <span
+                                        className={
+                                            history.requestId?.status === 'Completed'
+                                                ? 'status-completed'
+                                                : 'status-pending'
+                                        }
+                                    >
+                                        {history.requestId?.status || 'N/A'}
+                                    </span>
+                                </p>
+                                <p>
+                                    <strong>Donation Date:</strong>{' '}
+                                    {new Date(history.donationDate).toLocaleDateString()}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </>
     );
 }
 
