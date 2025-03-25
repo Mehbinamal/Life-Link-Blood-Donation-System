@@ -41,6 +41,39 @@ const acceptRequest = async (req, res) => {
     }
 };
 
+const getDonationHistory = async (req, res) => {
+    const { donorEmail } = req.params; // Get the logged-in user's email from params
+
+    try {
+        // Fetch donation history based on donorEmail
+        const donationHistory = await DonationHistoryModel.find({ email: donorEmail })
+            .populate({
+                path: 'requestId', // Populate request details if needed
+                select: 'bloodGroup patientName hospitalName status',
+            })
+            .sort({ donationDate: -1 }); // Sort by latest donation date
+
+        if (donationHistory.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: 'No donation history found for this user.',
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            donationHistory,
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error.',
+            error: error.message,
+        });
+    }
+};
+
 module.exports = {
     acceptRequest,
+    getDonationHistory
 };

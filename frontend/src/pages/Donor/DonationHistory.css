@@ -1,0 +1,68 @@
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    text-align: center;
+    color: #ff4e50;
+    margin-bottom: 20px;
+}
+
+.loading,
+.error,
+.no-history {
+    text-align: center;
+    font-size: 18px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.history-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    transition: box-shadow 0.3s;
+}
+
+.history-item:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.history-item h3 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #ff4e50;
+}
+
+.history-item p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
+
+.status-completed {
+    color: green;
+    font-weight: bold;
+}
+
+.status-pending {
+    color: #ff4e50;
+    font-weight: bold;
+}
+/* Style for Request ID */
+.history-item h3 span {
+    color: black; /* Change Request ID color to black */
+    font-weight: bold;
+}
