@@ -9,6 +9,9 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 import RequestForm from './pages/Recipient/RequestForm';
 import DetailedRequest from './pages/Donor/DetailedRequest';
+import DonationHistory from './pages/Donor/DonationHistory';
+import UpdateLastDonationDate from './pages/Donor/UpdateLastDonationDate';
+import About from './pages/Donor/About';
 import './App.css';
 
 function App() {
@@ -30,10 +33,9 @@ function App() {
         <Route path="/home/requestPage/:id" element={<DetailedRequest />} />
         
         {/* Redirect missing pages to home */}
-        <Route path="/reports" element={<Navigate to="/home" />} />
-        <Route path="/products" element={<Navigate to="/home" />} />
-        <Route path="/profile" element={<Navigate to="/home" />} />
-        <Route path="/blood-donation-details" element={<Navigate to="/home" />} />
+        <Route path="/donationhistory" element={<DonationHistory/>} />
+        <Route path="/updatedonationhistory" element={<UpdateLastDonationDate/>} />
+        <Route path="/about" element={<About/>} />
 
         {/* Catch all unknown routes */}
         <Route path="*" element={<Navigate to="/" />} />

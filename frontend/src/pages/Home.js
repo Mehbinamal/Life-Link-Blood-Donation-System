@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Styles/Home.css";
 
+
 function Home() {
     const [loggedInUser, setLoggedInUser] = useState('');
     const [bloodRequests, setBloodRequests] = useState([]);
@@ -50,7 +51,6 @@ function Home() {
     return (
         <div className="home-container">
             <h1>Welcome, {loggedInUser}</h1>
-
             {/* Blood Requests Section */}
             <div className="blood-requests">
                 <h2>Blood Requests</h2>
