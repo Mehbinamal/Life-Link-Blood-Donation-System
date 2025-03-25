@@ -1,5 +1,6 @@
 const DonationHistoryModel = require('../Models/DonationHistory');
 const BloodRequestModel = require('../Models/BloodRequests');
+const UserModel = require('../Models/User')
 
 const acceptRequest = async (req, res) => {
     const { requestId, donorEmail } = req.params; // Extract params from URL
@@ -7,13 +8,17 @@ const acceptRequest = async (req, res) => {
     try {
         // Get the blood request attached by the middleware
         const request = req.bloodRequest;
-
+    
         // Create a new donation history entry
         const newDonationHistory = new DonationHistoryModel({
             requestId: request._id,
             donorEmail: donorEmail,
             donationDate: Date.now(),
         });
+
+        const user = await UserModel.findOne({ email: donorEmail });
+        user.lastDonationDate = Date.now();
+        await user.save();
 
         // Save the donation history
         await newDonationHistory.save();

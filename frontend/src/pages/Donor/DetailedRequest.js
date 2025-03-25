@@ -34,7 +34,11 @@ function DetailedRequest() {
                 navigate(-1);
             }, 1000);
         } catch (err) {
-            handleError("Failed to accept request");
+            if (err.response && err.response.data && err.response.data.message) {
+                handleError(err.response.data.message); // Use backend error message
+            } else {
+                handleError("Something went wrong! Please try again.");
+            }
         }
     };
 
