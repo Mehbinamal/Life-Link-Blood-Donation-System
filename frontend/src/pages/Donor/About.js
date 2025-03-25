@@ -1,5 +1,5 @@
 import React from "react";
-//import "./About.css"; // Make sure to create and style this CSS file
+import "./About.css"; // Make sure to create and style this CSS file
 
 function About() {
   return (
@@ -51,7 +51,7 @@ function About() {
         <h2>Testimonials</h2>
         <blockquote>
           "Thanks to LifeLink, I found a blood donor in less than an hour. This platform is truly a lifesaver!"
-          <br /> – <strong>John Doe</strong>, Blood Recipient
+          <br /> – <strong>Anujith PP</strong>, Blood Recipient
         </blockquote>
       </section>
 
@@ -71,8 +71,12 @@ function About() {
         <h2>Get Involved</h2>
         <p>Join us in our mission to save lives! Register today as a blood donor or request blood when needed.</p>
         <p><strong>Contact Us:</strong></p>
-        <p>Email: mmamuhanned@gmail.com</p>
-        <p>Email: mehbinamal6@gmail.com</p>
+        <p>
+    Email: <a href="mailto:mmamuhanned@gmail.com" className="email-link">mmamuhanned@gmail.com</a>
+  </p>
+  <p>
+    Email: <a href="mailto:mehbinamal6@gmail.com" className="email-link">mehbinamal6@gmail.com</a>
+  </p>
       </section>
     </div>
   );

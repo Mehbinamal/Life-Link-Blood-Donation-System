@@ -8,23 +8,25 @@ import "react-toastify/ReactToastify.css";
 
 function AppWithHeader() {
   const location = useLocation();
+  const currentPath = location.pathname;
 
-  // List of pages where the header should be visible
+  // Pages where the LifeLink header should be shown
   const noNavbarPages = [
     "/welcome",
     "/login",
     "/signup",
     "/requestBlood",
-    "/requestPage",
-    "/details",
+    "/forgotPassword", // Fixed Forget Password page path
   ];
+
+  // Check if current path matches exactly OR starts with a dynamic route
+  const showHeader =
+    noNavbarPages.includes(currentPath) || currentPath.startsWith("/home/requestPage/");
 
   return (
     <>
       {/* Show LifeLink only if navbar is NOT present */}
-      {noNavbarPages.includes(location.pathname) && (
-        <div className="lifelink-header">LifeLink</div>
-      )}
+      {showHeader && <div className="lifelink-header">LifeLink</div>}
       <App />
     </>
   );
