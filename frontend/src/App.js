@@ -1,4 +1,4 @@
-import React from 'react';
+import {React , useState} from 'react';
 import {  Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
@@ -12,20 +12,27 @@ import DetailedRequest from './pages/Donor/DetailedRequest';
 import DonationHistory from './pages/Donor/DonationHistory';
 import UpdateLastDonationDate from './pages/Donor/UpdateLastDonationDate';
 import About from './pages/Donor/About';
+import RefreshHandler from './RefreshHandler';
 import './App.css';
 
 function App() {
   const location = useLocation();
   const showNavbar = ["/home"].includes(location.pathname); // Show Navbar only on Home for now
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const PrivateRoute = ({ element }) => {
+    return isAuthenticated ? element : <Navigate to="/login" />
+  }
 
   return (
     <div className="App">
+      <RefreshHandler setIsAuthenticated={setIsAuthenticated} />
       {showNavbar && <Navbar />} 
       <Routes>
         <Route path="/" element={<Navigate to="/welcome" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/home" element={<PrivateRoute element={<Home />} />} />
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
