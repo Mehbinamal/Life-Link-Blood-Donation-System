@@ -15,7 +15,7 @@ function DonationHistory() {
         const fetchDonationHistory = async () => {
             try {
                 const response = await axios.get(
-                    `http://localhost:8080/donor/donationHistory/${loggedInUser}`
+                    `https://life-link-blood-donation-system-server-indol.vercel.app/donor/donationHistory/${loggedInUser}`
                 );
 
                 if (response.data.success) {
