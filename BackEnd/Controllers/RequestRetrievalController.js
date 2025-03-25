@@ -2,9 +2,7 @@ const BloodRequestModel = require("../Models/BloodRequests");
 
 const getAllBloodRequests = async (req, res) => {
     try {
-        const bloodRequests = await BloodRequestModel.find().select(
-            ""
-        );
+        const bloodRequests = await BloodRequestModel.find({ status: "Pending" });
 
         res.status(200).json({
             success: true,
@@ -21,8 +19,9 @@ const getAllBloodRequests = async (req, res) => {
 
 const getBloodRequestByID = async (req,res) => {
     try{
-        const { _id } = req.params;
-        const bloodRequest = await BloodRequestModel.findOne(_id);
+        const { id } = req.params;
+        const bloodRequest = await BloodRequestModel.findOne({ _id: id });
+
 
         if (!bloodRequest) {
             return res.status(404).json({

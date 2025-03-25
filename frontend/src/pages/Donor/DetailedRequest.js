@@ -28,7 +28,7 @@ function DetailedRequest() {
 
     const handleAccept = async () => {
         try {
-            await axios.post(`http://localhost:8080/donor/acceptRequest/${id}`);
+            await axios.post(`https://life-link-blood-donation-system-server-indol.vercel.app/donor/acceptRequest/${id}/${localStorage.email}`);
             handleSuccess("Request accepted successfully");
             setTimeout(() => {
                 navigate(-1);
