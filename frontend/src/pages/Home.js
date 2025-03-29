@@ -18,7 +18,7 @@ function Home() {
             setLoggedInUser(user);
         }
 
-        axios.get(`http://localhost:8080/auth/${email}`)
+        axios.get(`https://life-link-blood-donation-system-server-indol.vercel.app/auth/${email}`)
             .then((response) => {
                 setIsAvailable(response.data.data.available);
             })
@@ -49,7 +49,7 @@ function Home() {
     const handleToggle = async (checked) => {
         try {
             const response = await axios.put(
-                `http://localhost:8080/donor/toggleAvailability/${email}`,
+                `https://life-link-blood-donation-system-server-indol.vercel.app/donor/toggleAvailability/${email}`,
                 {
                     available: checked, // true if checked, false if unchecked
                 }
