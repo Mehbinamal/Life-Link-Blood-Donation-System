@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Switch, message } from 'antd';
+import axios from 'axios';
 import "./Styles/Home.css";
 
 
 function Home() {
     const [loggedInUser, setLoggedInUser] = useState('');
     const [bloodRequests, setBloodRequests] = useState([]);
+    const [isAvailable, setIsAvailable] = useState(false);
+    const [email] = useState(localStorage.getItem("email"))
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -13,6 +17,14 @@ function Home() {
         if (user) {
             setLoggedInUser(user);
         }
+
+        axios.get(`https://life-link-blood-donation-system-server-indol.vercel.app/auth/${email}`)
+            .then((response) => {
+                setIsAvailable(response.data.data.available);
+            })
+            .catch((error) => {
+                console.error('Error fetching user data:', error);
+            });
 
         const fetchBloodRequests = async () => {
             try {
@@ -32,7 +44,30 @@ function Home() {
         };
 
         fetchBloodRequests();
-    }, []);
+    }, [email]);
+
+    const handleToggle = async (checked) => {
+        try {
+            const response = await axios.put(
+                `https://life-link-blood-donation-system-server-indol.vercel.app/donor/toggleAvailability/${email}`,
+                {
+                    available: checked, // true if checked, false if unchecked
+                }
+            );
+
+            if (response.data.success) {
+                setIsAvailable(checked);
+                message.success(
+                    `Availability updated to ${
+                        checked ? 'Available' : 'Not Available'
+                    }`
+                );
+            }
+        } catch (error) {
+            console.error('Error updating availability:', error);
+            message.error('Failed to update availability');
+        }
+    };
 
     // Logout function
     const handleLogout = () => {
@@ -51,6 +86,14 @@ function Home() {
     return (
         <div className="home-container">
             <h1>Welcome, {loggedInUser}</h1>
+            <div style={{ marginTop: 20 }}>
+                <Switch
+                    checked={isAvailable}
+                    onChange={handleToggle}
+                    checkedChildren="Available"
+                    unCheckedChildren="Not Available"
+                />
+            </div>
             {/* Blood Requests Section */}
             <div className="blood-requests">
                 <h2>Blood Requests</h2>

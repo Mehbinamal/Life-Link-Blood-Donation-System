@@ -131,9 +131,32 @@ const resetPassword = async (req,res) => {
     }
 }
 
+const getUserByEmail = async (req, res) => {
+    try {
+        const user = req.user; // User fetched by middleware
+
+        return res.status(200).json({
+            success: true,
+            message: 'User fetched successfully',
+            data: {
+                name: user.name,
+                email: user.email,
+                available: user.available,
+            },
+        });
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: 'Error fetching user data',
+            error: error.message,
+        });
+    }
+};
+
 module.exports = {
     signup,
     login,
     forgotPassword,
-    resetPassword
+    resetPassword,
+    getUserByEmail
 }

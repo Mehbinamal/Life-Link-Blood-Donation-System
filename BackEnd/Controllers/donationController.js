@@ -42,11 +42,11 @@ const acceptRequest = async (req, res) => {
 };
 
 const getDonationHistory = async (req, res) => {
-    const { donorEmail } = req.params; // Get the logged-in user's email from params
+    const { email } = req.params; // Get the logged-in user's email from params
 
     try {
         // Fetch donation history based on donorEmail
-        const donationHistory = await DonationHistoryModel.find({ email: donorEmail })
+        const donationHistory = await DonationHistoryModel.find({ donorEmail : email })
             .populate({
                 path: 'requestId', // Populate request details if needed
                 select: 'bloodGroup patientName hospitalName status',
