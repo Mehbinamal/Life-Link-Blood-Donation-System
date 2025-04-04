@@ -1,5 +1,5 @@
-import {React , useState} from 'react';
-import {  Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -13,36 +13,38 @@ import DonationHistory from './pages/Donor/DonationHistory';
 import UpdateLastDonationDate from './pages/Donor/UpdateLastDonationDate';
 import About from './pages/Donor/About';
 import RefreshHandler from './RefreshHandler';
+import PrivateRoute from './components/privateRoutes';
 import './App.css';
+import UpdatePassword from './pages/Donor/UpdatePassword';
 
 function App() {
   const location = useLocation();
-  const showNavbar = ["/home"].includes(location.pathname); // Show Navbar only on Home for now
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  const PrivateRoute = ({ element }) => {
-    return isAuthenticated ? element : <Navigate to="/login" />
-  }
+  const showNavbar = ["/home"].includes(location.pathname);
+  const [, setIsAuthenticated] = useState(false); // Removed unused isAuthenticated
 
   return (
     <div className="App">
       <RefreshHandler setIsAuthenticated={setIsAuthenticated} />
-      {showNavbar && <Navbar />} 
+      {showNavbar && <Navbar />}
       <Routes>
+        {/* Public Routes */}
         <Route path="/" element={<Navigate to="/welcome" />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/home" element={<PrivateRoute element={<Home />} />} />
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
-        <Route path="/requestBlood" element={<RequestForm />} />
-        <Route path="/home/requestPage/:id" element={<DetailedRequest />} />
-        
-        {/* Redirect missing pages to home */}
-        <Route path="/donationhistory" element={<DonationHistory/>} />
-        <Route path="/updatedonationhistory" element={<UpdateLastDonationDate/>} />
-        <Route path="/about" element={<About/>} />
+
+        {/* Protected Routes */}
+        <Route element={<PrivateRoute />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/requestBlood" element={<RequestForm />} />
+          <Route path="/home/requestPage/:id" element={<DetailedRequest />} />
+          <Route path="/donationhistory" element={<DonationHistory />} />
+          <Route path="/updatedonationhistory" element={<UpdateLastDonationDate />} />
+          <Route path="/updatePassword" element = {<UpdatePassword />} />
+          <Route path="/about" element={<About />} />
+        </Route>
 
         {/* Catch all unknown routes */}
         <Route path="*" element={<Navigate to="/" />} />
@@ -50,7 +52,5 @@ function App() {
     </div>
   );
 }
-
-
 
 export default App;

@@ -50,6 +50,7 @@ const UserSchema = new Schema({
     },
     passwordResetToken: String,
     passwordResetExpires: Date,
+    
 });
 
 UserSchema.methods.createResetPasswordToken = function() {

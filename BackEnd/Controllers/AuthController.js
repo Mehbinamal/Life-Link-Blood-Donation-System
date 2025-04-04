@@ -153,10 +153,27 @@ const getUserByEmail = async (req, res) => {
     }
 };
 
+const updatePassword = async (req,res) =>{
+    try {
+        const { email, newPassword } = req.body;
+
+        const user = await UserModel.findOne({ email });
+        user.password = await bcrypt.hash(newPassword, 10);
+        await user.save({ validateBeforeSave: false });
+
+        res.status(200).json({ message: "Password updated successfully" });
+    } catch (error) {
+        res.status(508).json({ 
+            message: "Internal server error", 
+            error: err.message });
+    }
+};
+
 module.exports = {
     signup,
     login,
     forgotPassword,
     resetPassword,
-    getUserByEmail
+    getUserByEmail,
+    updatePassword
 }
