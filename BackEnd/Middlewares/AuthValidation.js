@@ -75,6 +75,7 @@ const resetTokenValidation = async (req,res,next) => {
 }
 const resetPasswordValidation = (req, res, next) => {
     const schema = Joi.object({
+        email: Joi.string().email().required(),
         newPassword: Joi.string().min(4).max(100).required(),
         confirmPassword: Joi.string().valid(Joi.ref("newPassword")).required().messages({
             "any.only": "Passwords do not match",})

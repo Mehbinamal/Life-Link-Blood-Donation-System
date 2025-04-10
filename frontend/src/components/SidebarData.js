@@ -3,6 +3,7 @@ import React from 'react';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
 import { FaExclamation } from "react-icons/fa";
+import { RiLockPasswordLine } from "react-icons/ri";;
 
 export const SidebarData = [
   {
@@ -21,6 +22,12 @@ export const SidebarData = [
     title: 'Update Last Donation Date',
     path: '/updatedonationhistory',
     icon: <IoIcons.IoIosPaper/>,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Update Password',
+    path: '/updatePassword',
+    icon: <RiLockPasswordLine/>,
     cName: 'nav-text'
   },
   {
