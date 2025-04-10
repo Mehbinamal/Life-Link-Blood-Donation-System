@@ -161,9 +161,13 @@ const updatePassword = async (req,res) =>{
         user.password = await bcrypt.hash(newPassword, 10);
         await user.save({ validateBeforeSave: false });
 
-        res.status(200).json({ message: "Password updated successfully" });
+        res.status(200).json({ 
+            success: true,
+            message: "Password updated successfully" }
+        );
     } catch (error) {
-        res.status(508).json({ 
+        res.status(508).json({
+            success: false, 
             message: "Internal server error", 
             error: err.message });
     }
