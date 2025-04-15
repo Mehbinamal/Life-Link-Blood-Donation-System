@@ -44,5 +44,32 @@ const getBloodRequestByID = async (req,res) => {
     }
 };
 
+const searchBloodRequest = async (req,res) => {
+    try{
+        const { id } = req.body;
+        const bloodRequest = await BloodRequestModel.findOne({ _id: id });
 
-module.exports = { getAllBloodRequests,getBloodRequestByID };
+
+        if (!bloodRequest) {
+            return res.status(404).json({
+                success: false,
+                message: "Blood request not found"
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            data: bloodRequest
+        });
+
+    }catch(error){
+        res.status(500).json({
+            success: false,
+            message: "Internal server error",
+            error: error.message
+        });
+    }
+};
+
+
+module.exports = { getAllBloodRequests,getBloodRequestByID,searchBloodRequest };

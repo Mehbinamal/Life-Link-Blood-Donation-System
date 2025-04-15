@@ -16,6 +16,7 @@ import RefreshHandler from './RefreshHandler';
 import PrivateRoute from './components/privateRoutes';
 import './App.css';
 import UpdatePassword from './pages/Donor/UpdatePassword';
+import SearchBloodRequest from './pages/Recipient/SearchBloodRequest';
 
 function App() {
   const location = useLocation();
@@ -34,6 +35,7 @@ function App() {
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/forgotPassword" element={<ForgotPassword />} />
         <Route path="/resetPassword/:token" element={<ResetPassword />} />
+        <Route path="/searchBloodRequest" element={<SearchBloodRequest/>}/>
 
         {/* Protected Routes */}
         <Route element={<PrivateRoute />}>
