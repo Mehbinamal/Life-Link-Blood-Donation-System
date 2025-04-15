@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const validateRequestRetrieval = (req, res, next) => {
 
-    const { id } = req.params;
+    const { id } = req.params || req.body;
     
     if (id && !mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).json({

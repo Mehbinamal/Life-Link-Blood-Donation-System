@@ -1,0 +1,125 @@
+/* Container */
+.update-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffcccc, #ff9999);
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    padding: 20px;
+}
+
+/* Title */
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ff4e50;
+}
+
+/* Form */
+.update-form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Labels */
+label {
+    font-size: 16px;
+    color: #333;
+    text-align: left;
+}
+
+/* Input */
+input {
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+    background: #f8f9fa;
+    transition: background 0.3s;
+}
+
+/* Input Focus */
+input:focus {
+    border-color: #ff4e50;
+    background: #fff;
+}
+
+/* Button */
+.update-btn {
+    background: #ff4e50;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.update-btn:hover {
+    background: #d43f42;
+    transform: scale(1.05);
+}
+
+.update-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Result Box */
+.result-box {
+    color: #333;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 5px;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* Error Message */
+.error-message {
+    color: red;
+    font-size: 14px;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .update-form {
+        width: 95%;
+        padding: 15px;
+    }
+
+    input,
+    .update-btn {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .update-form {
+        padding: 10px;
+    }
+
+    input,
+    .update-btn {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
