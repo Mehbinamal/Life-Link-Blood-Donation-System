@@ -13,7 +13,7 @@ function SearchBloodRequest() {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.post('http://localhost:8080/recipient/searchBloodRequest', { id });
+            const response = await axios.post('https://life-link-blood-donation-system-server-indol.vercel.app/recipient/searchBloodRequest', { id });
             setResult(response.data.data);
         } catch (err) {
             setError(err.response?.data?.message || 'Something went wrong');
